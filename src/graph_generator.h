@@ -1,30 +1,16 @@
+#ifndef GRAPH_GENERATOR_H
+#define GRAPH_GENERATOR_H
+
 #include <random>
 #include "graph.h"
 
-namespace graph_gen {
+namespace {
 	std::default_random_engine generator;
 }
 
 // Binomial random graph
-Graph BRG(const size_t& n, const double& p) {
-
-	Graph g (n);
-
-	std::bernoulli_distribution distribution(p);
-
-	for (size_t i = 0; i < n; ++i)
-		for (size_t j = i+1; j < n; ++j)
-			if (distribution(graph_gen::generator)) g.addUndirectedEdge(i, j);
-
-	return g;
-
-}
-
+Graph BRG(const size_t& n, const double& p);
 // geometric random graph
-Graph GRG(const size_t& n, const double& r) {
-	Graph g (n);
+Graph GRG(const size_t& n, const double& r);
 
-	//TODO
-
-	return g;
-}
+#endif

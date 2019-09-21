@@ -2,7 +2,7 @@
 
 #include<queue>
 #include<vector>
-#include <iostream>
+#include<iostream>
 
 Graph::Graph(const size_t &n) {
 	AdjList = std::vector<std::list<std::size_t> > (n);
