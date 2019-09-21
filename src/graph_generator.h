@@ -10,6 +10,9 @@ namespace {
 
 // Binomial random graph
 Graph BRG(const size_t& n, const double& p);
+
+double distance(pair<double, double> a, pair<double, double> b);
+
 // geometric random graph
 Graph GRG(const size_t& n, const double& r);
 
