@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
 	const int n = atoi(argv[1]);
 
-	cout << "p-connected" << ' ' << "p" << endl;
+	cout << "# p-connected" << ' ' << "p" << endl;
 
 	for (double p = 0.0; p <= 1.0; p += DELTA_P) {
 
