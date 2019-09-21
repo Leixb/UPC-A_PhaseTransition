@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include<iostream>
 
 #include "graph.h"
 #include "graph_generator.h"

@@ -9,12 +9,12 @@ namespace {
 }
 
 // Binomial random graph
-Graph BRG(const size_t& n, const double& p);
+Graph BRG(const std::size_t& n, const double& p);
 
-double distance(pair<double, double> a, pair<double, double> b);
+double distance(const std::pair<double, double> &a, const std::pair<double, double> &b);
 
 // geometric random graph
-Graph GRG(const size_t& n, const double& r);
+Graph GRG(const std::size_t& n, const double& r);
 
 void seed_generator();
 

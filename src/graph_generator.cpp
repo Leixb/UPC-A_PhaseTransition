@@ -3,6 +3,9 @@
 #include <chrono>
 #include <cmath>
 
+using std::size_t;
+using std::pair;
+
 // Binomial random graph
 Graph BRG(const size_t& n, const double& p) {
 
@@ -18,7 +21,7 @@ Graph BRG(const size_t& n, const double& p) {
 
 }
 
-double distance(pair<double, double> a, pair<double, double> b) {
+double distance(const pair<double, double> &a, const pair<double, double> &b) {
 	return hypot(a.first-b.first, a.second-b.second);
 }
 
@@ -26,7 +29,7 @@ double distance(pair<double, double> a, pair<double, double> b) {
 Graph GRG(const size_t& n, const double& r) {
 	Graph g (n);
 
-	std::vector<std::pair<double, double> > coords(n);
+	std::vector<pair<double, double> > coords(n);
 
 	std::uniform_real_distribution<double> distr_x(0.0, 1.0), distr_y(0.0, 1.0);
 
