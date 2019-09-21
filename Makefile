@@ -5,7 +5,7 @@ OBJ = obj/graph.o obj/graph_generator.o
 
 .PHONY: all clean
 
-all: bin/binomial_stats bin/binomial_1case
+all: bin/binomial_stats bin/binomial_1case bin/geometric_1case
 
 obj/%.o: src/%.cpp $(DEPS)
 	$(CC) $(CFLAGS) -c -o $@ $<
