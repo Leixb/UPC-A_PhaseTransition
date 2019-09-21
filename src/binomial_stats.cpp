@@ -15,6 +15,8 @@ int main(int argc, char *argv[]) {
 		return 1;
 	}
 
+	seed_generator();
+
 	const int n = atoi(argv[1]);
 
 	cout << "# p-connected" << ' ' << "p" << endl;

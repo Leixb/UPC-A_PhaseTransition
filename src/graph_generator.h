@@ -13,4 +13,6 @@ Graph BRG(const size_t& n, const double& p);
 // geometric random graph
 Graph GRG(const size_t& n, const double& r);
 
+void seed_generator();
+
 #endif

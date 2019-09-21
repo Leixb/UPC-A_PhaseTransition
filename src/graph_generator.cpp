@@ -1,5 +1,7 @@
 #include "graph_generator.h"
 
+#include <chrono>
+
 // Binomial random graph
 Graph BRG(const size_t& n, const double& p) {
 
@@ -27,4 +29,8 @@ Graph GRG(const size_t& n, const double& r) {
 		coords[i] = {distr_x(generator), distr_y(generator)};
 
 	return g;
+}
+
+void seed_generator() {
+	generator.seed(std::chrono::system_clock::now().time_since_epoch().count());
 }
