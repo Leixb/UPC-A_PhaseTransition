@@ -19,7 +19,7 @@ Graph BRG(const size_t& n, const double& p) {
 }
 
 double distance(pair<double, double> a, pair<double, double> b) {
-	return sqrt(pow((a.first-b.first),2)+pow((a.second-b.second),2));
+	return hypot(a.first-b.first, a.second-b.second);
 }
 
 // geometric random graph
@@ -35,7 +35,7 @@ Graph GRG(const size_t& n, const double& r) {
 
 	for(size_t i = 0; i < n; ++i) {
 		for(size_t j = i+1; j < n; ++j){
-			if(distance(coords[i],coords[j]) < r) g.addUndirectedEdge(i, j);
+			if(distance(coords[i],coords[j]) < r*r) g.addUndirectedEdge(i, j);
 		}
 	}
 
