@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -std=c++11
 DEPS = src/graph.h src/graph_generator.h
 OBJ = obj/graph.o obj/graph_generator.o
 
