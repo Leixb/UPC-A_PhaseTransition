@@ -19,7 +19,12 @@ Graph BRG(const size_t& n, const double& p) {
 Graph GRG(const size_t& n, const double& r) {
 	Graph g (n);
 
-	//TODO
+	std::vector<std::pair<double, double> > coords(n);
+
+	std::uniform_real_distribution<double> distr_x(0.0, 1.0), distr_y(0.0, 1.0);
+
+	for (size_t i = 0; i < n; ++i)
+		coords[i] = {distr_x(generator), distr_y(generator)};
 
 	return g;
 }
