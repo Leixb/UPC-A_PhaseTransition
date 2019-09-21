@@ -35,7 +35,7 @@ Graph GRG(const size_t& n, const double& r) {
 
 	for(size_t i = 0; i < n; ++i) {
 		for(size_t j = i+1; j < n; ++j){
-			if(distance(coords[i],coords[j]) < r*r) g.addUndirectedEdge(i, j);
+			if(distance(coords[i], coords[j]) < r) g.addUndirectedEdge(i, j);
 		}
 	}
 
