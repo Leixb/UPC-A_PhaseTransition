@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 	double r;
 
 	while (cin >> n >> r) {
-		const Graph g = BRG(n, r);
+		const Graph g = GRG(n, r);
 
 		g.print();
 

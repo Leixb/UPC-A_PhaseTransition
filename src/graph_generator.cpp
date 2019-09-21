@@ -2,6 +2,7 @@
 
 #include <chrono>
 #include <cmath>
+#include <iostream>
 
 using std::size_t;
 using std::pair;
@@ -33,12 +34,11 @@ Graph GRG(const size_t& n, const double& r) {
 
 	std::uniform_real_distribution<double> distr_x(0.0, 1.0), distr_y(0.0, 1.0);
 
-	for (size_t i = 0; i < n; ++i)
-		coords[i] = {distr_x(generator), distr_y(generator)};
+	for (size_t i = 0; i < n; ++i) coords[i] = {distr_x(generator), distr_y(generator)};
 
 	for(size_t i = 0; i < n; ++i) {
 		for(size_t j = i+1; j < n; ++j){
-			if(distance(coords[i], coords[j]) < r) g.addUndirectedEdge(i, j);
+			if(distance(coords[i], coords[j]) <= r) g.addUndirectedEdge(i, j);
 		}
 	}
 
