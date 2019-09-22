@@ -1,26 +1,33 @@
 CC = g++
 CFLAGS = -Wall -std=c++11
 
-DEPS = src/graph.h src/graph_generator.h
-OBJ = obj/graph.o obj/graph_generator.o
-BIN = bin/binomial_stats bin/binomial_1case bin/geometric_1case
+BIN = bin
+OBJ = obj
+SRC = src
 
-.PHONY: all clean
-.SECONDARY: $(OBJ)
+EXECUTABLES = binomial_stats binomial_1case geometric_1case test_binomial_gen
 
-all: $(BIN)
+HEADERS = $(wildcard $(SRC)/*.h)
+DEPENDENCIES = $(HEADERS:$(SRC)/%.h=$(OBJ)/%.o)
 
-obj/%.o: src/%.cpp $(DEPS) | obj
-	$(CC) $(CFLAGS) -c -o $@ $<
+EXECUTABLE_FILES = $(EXECUTABLES:%=$(BIN)/%)
 
-bin/%: $(OBJ) | bin
-	$(CC) $(CFLAGS) -o $@ $^ src/$(@F).cpp
-
-bin:
-	mkdir -p bin
-
-obj:
-	mkdir -p obj
+build: $(EXECUTABLE_FILES)
 
 clean:
-	-rm bin/* obj/*
+	-rm -r -f $(BIN) $(OBJ)
+
+.PHONY: build clean
+
+$(BIN):
+	mkdir -p $(BIN)
+
+$(OBJ):
+	mkdir -p $(OBJ)
+
+$(EXECUTABLE_FILES): $(BIN)/%: $(OBJ)/%.o $(DEPENDENCIES) | $(BIN)
+	$(CC) $(CFLAGS) -o $@ $^
+	@echo "Build successful!"
+
+$(OBJ)/%.o: $(SRC)/%.cpp | $(OBJ)
+	$(CC) $(CFLAGS) -o $@ -c $<
