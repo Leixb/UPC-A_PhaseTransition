@@ -56,11 +56,15 @@ unsigned int Graph::NconnectedComponents() const {
 }
 
 void Graph::print() const {
+	// Prints adjacency list as a python dict (ca n be parsed with sagemath)
 
+	std::cout << '{' << std::endl;
 	for (size_t i = 0; i < AdjList.size(); ++i) {
-		std::cout << i << " :";
-		for (const size_t &j : AdjList[i]) std::cout << ' ' << j;
-		std::cout << std::endl;
+		std::cout << i << " : [";
+		for (const size_t &j : AdjList[i])
+			std::cout << j << ", ";
+		std::cout << "],"<< std::endl;
 	}
+	std::cout << '}' << std::endl;
 
 }
