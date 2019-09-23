@@ -26,14 +26,17 @@ def plot(filename):
 
     data = np.genfromtxt(filename)
 
-    (x, y) = np.sort(data, axis=0).T
-    plt.scatter(x, y, marker='+')
-    plt.plot(x, y)
+    #(x, y) = np.sort(data, axis=0).T
+    (x, y) = data.T
+
+    plt.scatter(x, y, marker='x', zorder=10, clip_on=False)
+    #plt.plot(x, y)
+
     plt.title(os.path.basename(filename))
     plt.xlabel('p')
     plt.ylabel('Probability that the network is connected')
-    plt.xlim(0,1)
-    plt.ylim(0,1)
+    plt.xlim(0, 1)
+    plt.ylim(0, 1)
 
     plt.savefig(plot_filename)
     plt.close()
