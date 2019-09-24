@@ -44,7 +44,7 @@ list<pair<double, double>> adaptative_calc(const int &n, const int &rep, const d
 			   							   double (*func)(const int &n, const double &p, const int &rep)) {
 
 	list<pair<double, double> > l;
-	l.emplace_back(0, 0);
+	l.emplace_back(0, func(n, 0, rep));
 
 	vector<list<pair<double, double> >::iterator> v(PART_INI-1);
 
