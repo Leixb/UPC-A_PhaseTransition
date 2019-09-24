@@ -13,10 +13,14 @@ void usage() {
 
 #define DEPTH_LIMIT 10
 
-double repeat(const int& n, const double& p, const int&rep) {
+int repeat(const int& n, const double& p, const int &rep) {
 	int count = 0;
 	for (int i = 0; i < rep; ++i)  count += BRG(n, p).is_connected();
 	return count;
+}
+
+double average(const int& n, const double &p, const int &rep) {
+	return double(repeat(n, p, rep))/double(rep);
 }
 
 void calculate(const vector<double> &v, const int &n, const double &dy,
@@ -25,12 +29,13 @@ void calculate(const vector<double> &v, const int &n, const double &dy,
 	vector <double> next_it;
 	vector <double> res (v.size());
 
-	res[0] = repeat(n, 0, rep);
+	res[0] = average(n, v[0], rep);
+	cout << v[0] << ' ' << res[0] << endl;
 
 	// p = v[i]
 
 	for (size_t i = 1; i < v.size(); ++i) {
-		res[i] = repeat(n, v[i], rep)/double(rep);
+		res[i] = average(n, v[i], rep);
 
 		cout << v[i] << ' ' << res[i] << endl;
 
