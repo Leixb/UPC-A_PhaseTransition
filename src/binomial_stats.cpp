@@ -32,7 +32,7 @@ int main(int argc, char *argv[]) {
 		int count = 0;
 
 		for (int i = 0; i < repeticions; ++i) {
-			count += BRG(n, p).NconnectedComponents() == 1;
+			count += BRG(n, p).is_connected();
 		}
 
 		cout << p << ' ' << double(count)/double(repeticions) << endl;

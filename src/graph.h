@@ -15,6 +15,7 @@ class Graph {
 	void addDirectedEdge(const std::size_t& a, const std::size_t& b);
 
 	unsigned int NconnectedComponents() const;
+	bool is_connected() const;
 
 	void print() const;
 

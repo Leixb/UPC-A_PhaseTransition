@@ -15,7 +15,7 @@ void usage() {
 
 double repeat(const int& n, const double& p, const int&rep) {
 	int count = 0;
-	for (int i = 0; i < rep; ++i)  count += BRG(n, p).NconnectedComponents()==1;
+	for (int i = 0; i < rep; ++i)  count += BRG(n, p).is_connected();
 	return count;
 }
 

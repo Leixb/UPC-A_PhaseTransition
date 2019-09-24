@@ -43,6 +43,8 @@ unsigned int Graph::NconnectedComponents() const {
 			size_t v = Q.front();
 			Q.pop();
 
+			if (visited[v]) continue;
+
 			visited[v] = true;
 
 			for (const size_t &u : this->neighbors(v))
@@ -53,6 +55,29 @@ unsigned int Graph::NconnectedComponents() const {
 	}
 
 	return count;
+}
+
+bool Graph::is_connected() const {
+	std::vector<bool> visited(AdjList.size(), false);
+	size_t count = 0;
+
+	std::queue<size_t> Q;
+	Q.push(0);
+
+	while (!Q.empty()) {
+		const size_t v = Q.front();
+		Q.pop();
+
+		if (visited[v]) continue;
+
+		visited[v] = true;
+		++count;
+
+		for (const size_t &u : neighbors(v))
+			if (!visited[u]) Q.push(u);
+	}
+
+	return count == AdjList.size();
 }
 
 void Graph::print() const {
