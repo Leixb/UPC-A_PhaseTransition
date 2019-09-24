@@ -13,7 +13,7 @@ import argparse
 
 def compute_stats(prog, n, rep, dp, out_dir):
 
-    output_filename = '{}/{}_{}.dat'.format(out_dir, os.path.basename(prog), n)
+    output_filename = '{}/{}_{:04d}.dat'.format(out_dir, os.path.basename(prog), n)
 
     with open(output_filename, 'w+') as output:
         subprocess.call((prog, str(n), str(rep), str(dp)), stdout=output)
@@ -60,7 +60,7 @@ if __name__ == '__main__':
 
     def compute_stats_wrapped(n):
         print('Started   N=', n)
-        filename = compute_stats(args.program, str(n), str(args.repetitions), str(args.delta_p),
+        filename = compute_stats(args.program, n, args.repetitions, args.delta_p,
                       args.out_dir)
         print('Finished  N=', n)
 
