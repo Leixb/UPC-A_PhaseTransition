@@ -46,9 +46,9 @@ list<pair<double, double>> adaptative_calc(const int &n, const int &rep, const d
 	list<pair<double, double> > l;
 	l.emplace_back(0, func(n, 0, rep));
 
-	vector<list<pair<double, double> >::iterator> v(PART_INI-1);
+	vector<list<pair<double, double> >::iterator> v(PART_INI);
 
-	for (size_t i = 1; i < PART_INI; ++i)
+	for (size_t i = 1; i <= PART_INI; ++i)
 		v[i-1] = l.emplace(l.end(), double(i)/double(PART_INI), -1);
 
 
