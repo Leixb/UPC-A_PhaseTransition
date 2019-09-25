@@ -31,8 +31,8 @@ def plot(filename):
     #(x, y) = np.sort(data, axis=0).T
     (x, y) = data.T
 
-    plt.scatter(x, y, marker='x', zorder=10, clip_on=False)
-    #plt.plot(x, y)
+    #plt.scatter(x, y, marker='x', zorder=10, clip_on=False)
+    plt.plot(x, y)
 
     plt.title(os.path.basename(filename))
     plt.xlabel(args.xlabel)
