@@ -35,16 +35,9 @@ if __name__ == '__main__':
 
     with mp.Pool(processes=4) as pool:
 
-        results = []
-
-        for data_file in glob.glob("{}/{}*.dat".format(args.out_dir, args.prog)):
-            print(data_file)
-            r = pool.apply_async(get_data, (data_file,))
-            results.append(r)
-
-        data = []
-        for r in results:
-            data.append(r.get())
+        data_files = glob.glob("{}/{}*.dat".format(args.out_dir, args.prog))
+        data_files.sort()
+        data = pool.map(get_data, data_files)
 
         pool.close()
         pool.join()
