@@ -23,7 +23,7 @@ def compute_stats(n):
     return output_filename
 
 def plot(filename):
-    plot_filename = filename.replace('.dat', '.png')
+    plot_filename = filename.replace('.dat', '.pdf')
 
 
     data = np.genfromtxt(filename)
