@@ -5,8 +5,8 @@ import argparse
 import numpy as np
 import matplotlib.pyplot as plt
 
-def get_data(filename):
-    data = np.genfromtxt(filename)
+def get_data(file):
+    data = np.genfromtxt(file.name)
     return data.T
 
 
@@ -14,7 +14,7 @@ def main():
 
     parser = argparse.ArgumentParser('Plot from data file')
 
-    parser.add_argument('datafile', type=argparse.FileType('r'))
+    parser.add_argument('datafile', type=argparse.FileType('r'), nargs='+')
 
     parser.add_argument('--title', '-t', type=str, default='')
     parser.add_argument('--xlabel', '-x', type=str, default='')
@@ -34,12 +34,13 @@ def main():
     plt.xlabel(args.xlabel)
     plt.ylabel(args.ylabel)
 
-    (x, y) = get_data(args.datafile.name)
+    data = map(get_data, args.datafile)
 
-    if args.scatter:
-        plt.scatter(x, y, label=int(y[0]))
-    else:
-        plt.plot(x, y, label=int(y[0]))
+    for (x, y) in data:
+        if args.scatter:
+            plt.scatter(x, y, label=int(y[0]))
+        else:
+            plt.plot(x, y, label=int(y[0]))
 
     if args.show_legend:
         plt.legend(title='N')

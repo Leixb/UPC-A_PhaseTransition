@@ -24,6 +24,11 @@ function plot() {
 		-o "$3" "$1" 2>/dev/null
 }
 
+function plot_mult() {
+	python plot.py -t "$TITLE" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
+		-o "$OUTPUT" --show-legend $@ 2>/dev/null
+}
+
 # 1: datafile
 function get_n() {
 	head "$1" -n 1 | cut -d' ' -f2
@@ -48,9 +53,16 @@ function pipe() {
 
 mkdir -p "$PLOT_DIR"
 
-VALORS_N="${*:-10 20 30 40 50}"
+VALORS_N="$*"
+
+if [ ! -z $VALORS_N ]; then
 
 (compute ./bin/geo_Ncomp | XLABEL=r pipe "Geometric Random Graph")&
 (compute ./bin/bin_Ncomp | XLABEL=p pipe "Binomial Random Graph")&
+
+fi
+
+TITLE="Geometric Random Graph" OUTPUT="${PLOT_DIR}/geo_mult.$EXT" plot_mult "${FOLDER}/geo*.dat"
+TITLE="Binomial Random Graph" OUTPUT="${PLOT_DIR}/bin_mult.$EXT" plot_mult "${FOLDER}/bin*.dat"
 
 wait
