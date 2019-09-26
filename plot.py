@@ -1,57 +1,52 @@
 #!/usr/bin/python3
 
-import multiprocessing as mp
-import subprocess
-
-import os.path
-import os
-import glob
+import argparse
 
 import numpy as np
 import matplotlib.pyplot as plt
-
-import argparse
 
 def get_data(filename):
     data = np.genfromtxt(filename)
     return data.T
 
 
-if __name__ == '__main__':
+def main():
 
-    parser = argparse.ArgumentParser('.')
-    parser.add_argument('out_dir')
-    parser.add_argument('prog')
-    parser.add_argument('--ylabel', '-y', type=str, default='')
-    parser.add_argument('--xlabel', '-x', type=str, default='')
+    parser = argparse.ArgumentParser('Plot from data file')
+
+    parser.add_argument('datafile', type=argparse.FileType('r'))
+
     parser.add_argument('--title', '-t', type=str, default='')
+    parser.add_argument('--xlabel', '-x', type=str, default='')
+    parser.add_argument('--ylabel', '-y', type=str, default='')
+
+    parser.add_argument('--xmin', type=float, default=0)
+    parser.add_argument('--xmax', type=float, default=1)
+
+    parser.add_argument('--show-legend', action='store_true')
+    parser.add_argument('--scatter', action='store_true')
+
     parser.add_argument('--output', '-o', type=str, default='')
 
     args = parser.parse_args()
-
-    if not os.path.exists(args.out_dir):
-        os.mkdir(args.out_dir)
-
-
-    with mp.Pool(processes=4) as pool:
-
-        data_files = glob.glob("{}/{}*.dat".format(args.out_dir, args.prog))
-        data_files.sort()
-        data = pool.map(get_data, data_files)
-
-        pool.close()
-        pool.join()
 
     plt.title(args.title)
     plt.xlabel(args.xlabel)
     plt.ylabel(args.ylabel)
 
-    for (x, y) in data:
+    (x, y) = get_data(args.datafile.name)
+
+    if args.scatter:
+        plt.scatter(x, y, label=int(y[0]))
+    else:
         plt.plot(x, y, label=int(y[0]))
 
-    plt.legend(title='N')
+    if args.show_legend:
+        plt.legend(title='N')
 
-    plt.xlim(0, 1)
-    #plt.ylim(0, 1)
+    plt.xlim(args.xmin, args.xmax)
 
     plt.savefig(args.output)
+
+if __name__ == '__main__':
+    main()
