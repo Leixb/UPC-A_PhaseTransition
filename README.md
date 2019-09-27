@@ -38,7 +38,7 @@ python3 compute.py --repeticions 500 -d 0.1 --out-dir data ./bin/bin_Ncomp 10 20
 
 
 
-##Gràfics
+## Gràfics
 
 Per generar els gràfics utilitzem un script de Python `plot.py` i els parametres es poden veure fent `python3 plot.py -h`.
 
