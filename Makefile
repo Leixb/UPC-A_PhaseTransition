@@ -5,7 +5,7 @@ BIN = bin
 OBJ = obj
 SRC = src
 
-EXECUTABLES = bin_Ncomp geo_Ncomp binomial_1case bin_prob bin_prob_slow geometric_1case test_binomial_gen
+EXECUTABLES = bin_Ncomp geo_Ncomp
 
 HEADERS = $(wildcard $(SRC)/*.h)
 DEPENDENCIES = $(HEADERS:$(SRC)/%.h=$(OBJ)/%.o)
