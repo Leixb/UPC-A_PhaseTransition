@@ -1,6 +1,6 @@
-#Transició de fase i components connexes en grafs aleatoris
+# Transició de fase i components connexes en grafs aleatoris
 
-##Build
+## Build
 Per generar les binàries cal fer `make` i es generen a la carpeta `bin/`.
 
 Tenim dues binàries `bin_Ncomp` i `geo_Ncomp` i reben els mateixos parametres:
