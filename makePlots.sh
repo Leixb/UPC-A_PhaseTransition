@@ -15,23 +15,23 @@ EXT="${EXT:-pdf}"
 
 # 1: binary file
 function compute() {
-	python compute.py "$1" -r $REP -d $DY -o "$FOLDER" $VALORS_N
+	python3 compute.py "$1" -r $REP -d $DY -o "$FOLDER" $VALORS_N
 }
 
 # 1: datafile, 2: title, 3: outputfile
 function plot() {
-	python plot.py -t "$2" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
+	python3 plot.py -t "$2" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
 		-o "$3" "$1" 2>/dev/null
 }
 
 function plot_mult() {
-	python plot.py -t "$TITLE" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
+	python3 plot.py -t "$TITLE" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
 		-o "$OUTPUT" --show-legend $@ 2>/dev/null
 }
 
 # 1: datafile
 function get_n() {
-	head "$1" -n 1 | cut -d' ' -f2
+	head -n 1 "$1" | cut -d' ' -f2
 }
 
 # 1: Title to pass
@@ -55,12 +55,10 @@ mkdir -p "$PLOT_DIR"
 
 VALORS_N="$*"
 
-if [ ! -z $VALORS_N ]; then
 
-(compute ./bin/geo_Ncomp | XLABEL=r pipe "Geometric Random Graph")&
-(compute ./bin/bin_Ncomp | XLABEL=p pipe "Binomial Random Graph")&
+compute ./bin/geo_Ncomp | XLABEL=r pipe "Geometric Random Graph"
+compute ./bin/bin_Ncomp | XLABEL=p pipe "Binomial Random Graph"
 
-fi
 
 TITLE="Geometric Random Graph" OUTPUT="${PLOT_DIR}/geo_mult.$EXT" plot_mult "${FOLDER}/geo*.dat"
 TITLE="Binomial Random Graph" OUTPUT="${PLOT_DIR}/bin_mult.$EXT" plot_mult "${FOLDER}/bin*.dat"

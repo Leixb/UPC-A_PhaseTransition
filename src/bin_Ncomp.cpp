@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
 	const double dy = stod(argv[3]);
 
 	cout << "# N=" << n << " REP=" << rep << " dy=" << dy << endl
-		 << "# p-connected" << ' ' << "p" << endl;
+		 << "# avg_Ncomp" << ' ' << "p" << endl;
 
 	const auto l = adaptative_calc(n, rep, dy, average);
 
