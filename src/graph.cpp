@@ -24,10 +24,11 @@ const std::list<size_t>& Graph::neighbors(const size_t& v) const {
 	return AdjList[v];
 }
 
-unsigned int Graph::NconnectedComponents() const {
+const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const {
 	std::vector<bool> visited(AdjList.size(), false);
 
 	unsigned int count = 0;
+    unsigned int max = 0;
 	size_t next = 0;
 
 	std::queue<size_t> Q;
@@ -35,6 +36,8 @@ unsigned int Graph::NconnectedComponents() const {
 	while (next < AdjList.size()) {
 
 		++count;
+        
+        unsigned size = 0;
 
 		Q.push(next);
 
@@ -46,15 +49,18 @@ unsigned int Graph::NconnectedComponents() const {
 			if (visited[v]) continue;
 
 			visited[v] = true;
+            ++size;
 
 			for (const size_t &u : this->neighbors(v))
 				if (!visited[u]) Q.push(u);
 		}
+		
+		if (size > max) max = size;
 
 		for (;next < AdjList.size() && visited[next]; ++next);
 	}
 
-	return count;
+	return std::make_pair(count,max);
 }
 
 bool Graph::is_connected() const {

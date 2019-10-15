@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <list>
+#include <utility>
 
 #include "graph_generator.h"
 #include "adaptative_calc.h"
@@ -14,7 +15,7 @@ void usage() {
 
 double average(const int& n, const double &p, const int &rep) {
 	int count = 0;
-	for (int i = 0; i < rep; ++i)  count += BRG(n, p).NconnectedComponents();
+	for (int i = 0; i < rep; ++i)  count += BRG(n, p).NconnectedComponents().first;
 	return double(count)/double(rep);
 }
 

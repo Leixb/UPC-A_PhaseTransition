@@ -14,7 +14,7 @@ void usage() {
 
 double average(const int& n, const double &r, const int &rep) {
 	int count = 0;
-	for (int i = 0; i < rep; ++i)  count += GRG(n, r).NconnectedComponents();
+	for (int i = 0; i < rep; ++i)  count += GRG(n, r).NconnectedComponents().first;
 	return double(count)/double(rep);
 }
 
