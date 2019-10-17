@@ -24,6 +24,39 @@ const std::list<size_t>& Graph::neighbors(const size_t& v) const {
 	return AdjList[v];
 }
 
+const std::pair <bool, bool> Graph::EulerianCycleAndEulerianPath() const {
+    bool eulerianCycle = false;
+    bool eulerianPath = false;
+    
+    unsigned int nVertex = AdjList.size();
+    
+    std::pair<unsigned int, unsigned int> info = NconnectedComponents();
+    unsigned int nCC = info.first;
+    unsigned int max = info.second;
+    
+    // all of its vertices with nonzero degree belong to a single connected component
+    bool singleCC = (nCC + max - 1) == nVertex;
+    
+    if (singleCC) {
+        int oddVertex = 0;
+        for (int i = 0; i < AdjList.size(); ++i) {
+            if (AdjList[i].size() % 2 != 0) {
+                ++oddVertex;
+            }
+        }
+        
+        if (oddVertex == 0) {
+            eulerianCycle = true;
+            eulerianPath = true;
+        }
+        if (oddVertex == 2) {
+            eulerianPath = true;
+        }
+    }
+    
+    return std::make_pair(eulerianCycle,eulerianPath);
+}
+
 const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const {
 	std::vector<bool> visited(AdjList.size(), false);
 
