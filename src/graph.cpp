@@ -39,7 +39,7 @@ const std::pair <bool, bool> Graph::EulerianCycleAndEulerianPath() const {
     
     if (singleCC) {
         int oddVertex = 0;
-        for (int i = 0; i < AdjList.size(); ++i) {
+        for (unsigned int i = 0; i < nVertex; ++i) {
             if (AdjList[i].size() % 2 != 0) {
                 ++oddVertex;
             }
