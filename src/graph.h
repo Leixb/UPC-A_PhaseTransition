@@ -15,7 +15,11 @@ class Graph {
 	void addUndirectedEdge(const std::size_t& a, const std::size_t& b);
 	void addDirectedEdge(const std::size_t& a, const std::size_t& b);
     
-    const std::pair <bool, bool> EulerianCycleAndEulerianPath() const;
+    const bool hasCycles() const;
+    
+    const unsigned int TreeAndForest() const;
+    
+    const unsigned int EulerianCycleAndEulerianPath() const;
     
 	const std::pair <unsigned int, unsigned int> NconnectedComponents() const;
     

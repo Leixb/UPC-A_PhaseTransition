@@ -24,10 +24,51 @@ const std::list<size_t>& Graph::neighbors(const size_t& v) const {
 	return AdjList[v];
 }
 
-const std::pair <bool, bool> Graph::EulerianCycleAndEulerianPath() const {
-    bool eulerianCycle = false;
-    bool eulerianPath = false;
-    
+const bool Graph::hasCycles() const {
+    std::vector<bool> visited(AdjList.size(), false);
+
+	size_t next = 0;
+
+	std::queue<size_t> Q;
+
+	while (next < AdjList.size()) {
+
+		Q.push(next);
+
+		// BFS
+		while (!Q.empty()) {
+			size_t v = Q.front();
+			Q.pop();
+
+			if (visited[v]) return true;
+
+			visited[v] = true;
+
+			for (const size_t &u : this->neighbors(v))
+				if (!visited[u]) Q.push(u);
+		}
+		
+
+		for (;next < AdjList.size() && visited[next]; ++next)
+            return true;
+	}
+
+	return false;
+}
+
+// 0 si nada, 1 si arbol, 2 si forest
+const unsigned int Graph::TreeAndForest() const {
+    if (not hasCycles()) {
+        if (is_connected()) {
+            return 1;
+        }
+        return 2;
+    }
+    return 0;
+}
+
+// 0 si nada, 1 si Path, 2 si Cycle y Path
+const unsigned int Graph::EulerianCycleAndEulerianPath() const {
     unsigned int nVertex = AdjList.size();
     
     std::pair<unsigned int, unsigned int> info = NconnectedComponents();
@@ -46,15 +87,13 @@ const std::pair <bool, bool> Graph::EulerianCycleAndEulerianPath() const {
         }
         
         if (oddVertex == 0) {
-            eulerianCycle = true;
-            eulerianPath = true;
+            return 2;
         }
         if (oddVertex == 2) {
-            eulerianPath = true;
+           return 1;
         }
+        return 0;
     }
-    
-    return std::make_pair(eulerianCycle,eulerianPath);
 }
 
 const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const {
