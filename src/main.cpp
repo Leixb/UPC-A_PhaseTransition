@@ -27,6 +27,10 @@ int numCompCon(const int& n, const double &p) {
 	return GeneradorGraph(n, p).NconnectedComponents().first;
 }
 
+int esConnex(const int& n, const double &p) {
+	return GeneradorGraph(n, p).NconnectedComponents().first == 1;
+}
+
 int midaCompConMax(const int& n, const double &p) {
 	return GeneradorGraph(n, p).NconnectedComponents().second;
 }
@@ -69,6 +73,7 @@ int main(int argc, char *argv[]) {
 
 	if (propietat_graph == "numCompCon") propietat = numCompCon;
 	else if (propietat_graph == "midaCompConMax") propietat = midaCompConMax;
+	else if (propietat_graph == "esConnex") propietat = esConnex;
 	else if (propietat_graph == "cicle") propietat = cicle; // Forest
 	else if (propietat_graph == "eulerianPath") propietat = eulerianPath;
 	else if (propietat_graph == "eulerianCycle") propietat = eulerianCycle;

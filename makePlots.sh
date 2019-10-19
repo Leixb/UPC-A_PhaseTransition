@@ -56,12 +56,14 @@ mkdir -p "$PLOT_DIR"
 VALORS_N="$*"
 
 compute GRG numCompCon	 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r pipe "Components conexes en Geometric Random Graph"
+compute GRG esConnex	 	| YLABEL="Probabilitat de ser connex" 			XLABEL=r pipe "Connectivitat en Geometric Random Graph"
 compute GRG midaCompConMax 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r pipe "Mida component conexa gegant en Geometric Random Graph"
 compute GRG cicle 			| YLABEL="Probabilitat de tenir cicle"		    XLABEL=r pipe "Cicles en Geometric Random Graph"
 compute GRG eulerianPath 	| YLABEL="Probabilitat de tenir camí eulerià"	XLABEL=r pipe "Camí eulerià en Geometric Random Graph"
 compute GRG eulerianCycle 	| YLABEL="Probabilitat de tenir cicle eulerià"	XLABEL=r pipe "Cicle eulerià en Geometric Random Graph"
 
 compute BRG numCompCon	 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p pipe "Components conexes en Binomial Random Graph"
+compute BRG esConnex	 	| YLABEL="Probabilitat de ser connex" 			XLABEL=p pipe "Connectivitat en Binomial Random Graph"
 compute BRG midaCompConMax 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p pipe "Mida Component conexa gegant en Binomial Random Graph"
 compute BRG cicle 			| YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p pipe "Cicles en Binomial Random Graph"
 compute BRG eulerianPath 	| YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p pipe "Camí eulerià en Binomial Random Graph"
@@ -69,6 +71,8 @@ compute BRG eulerianCycle 	| YLABEL="Probabilitat de tenir cicle eulerià" 	XLAB
 
 OUTPUT="${PLOT_DIR}/GRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Components conexes en Geometric Random Graph" \
 	plot_mult "${FOLDER}/GRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/GRG_esConnex.$EXT" 		YLABEL="Probabilitat de ser connex" 				XLABEL=r TITLE="Connectivitat en Geometric Random Graph" \
+	plot_mult "${FOLDER}/GRG_esConnex*.dat"
 OUTPUT="${PLOT_DIR}/GRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Mida component conexa gegant en Geometric Random Graph" \
 	plot_mult		 "${FOLDER}/GRG_midaCompConMax*.dat"
 OUTPUT="${PLOT_DIR}/GRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		    XLABEL=r TITLE="Cicles en Geometric Random Graph" \
@@ -80,6 +84,8 @@ OUTPUT="${PLOT_DIR}/GRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle
 
 OUTPUT="${PLOT_DIR}/BRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Components conexes en Binomial Random Graph" \
 	plot_mult		 "${FOLDER}/BRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/BRG_esConnex.$EXT" 		YLABEL="Probabilitat de ser connex" 				XLABEL=p TITLE="ponnectivitat en Binomial Random Graph" \
+	plot_mult "${FOLDER}/BRG_esConnex*.dat"
 OUTPUT="${PLOT_DIR}/BRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Mida Component conexa gegant en Binomial Random Graph" \
 	plot_mult		 "${FOLDER}/BRG_midaCompConMax*.dat"
 OUTPUT="${PLOT_DIR}/BRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p TITLE="Cicles en Binomial Random Graph" \
