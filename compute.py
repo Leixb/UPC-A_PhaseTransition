@@ -10,19 +10,20 @@ import os
 
 def compute_stats(n):
 
-    output_filename = '{}/{}_{:04d}.dat'.format(args.out_dir, os.path.basename(args.program), n)
+    output_filename = '{}/{}_{}_{:04d}.dat'.format(args.out_dir, args.graph_type, args.property, n)
 
     with open(output_filename, 'w+') as output:
-        subprocess.call((args.program, str(n), str(args.repetitions), str(args.delta_p)), stdout=output)
+        subprocess.call(('./bin/main', args.graph_type, args.property, str(n), str(args.repetitions), str(args.delta_p)), stdout=output)
 
     return output_filename
 
 
 if __name__ == '__main__':
 
-    parser = argparse.ArgumentParser('Compute data from binarie files into directory')
+    parser = argparse.ArgumentParser('Compute data from binary files into directory')
 
-    parser.add_argument('program')
+    parser.add_argument('graph_type')
+    parser.add_argument('property')
     parser.add_argument('N', type=int, nargs='+')
 
     parser.add_argument('--repetitions', '-r', type=int, default=50)

@@ -7,7 +7,7 @@ DY=${DY:-0.1}
 XMIN=${XMIN:-0}
 XMAX=${XMAX:-1}
 
-YLABEL="${YABEL:-Nombre de components connexos}"
+YLABEL="${YABEL:-y}"
 XLABEL="${XLABEL:-x}"
 
 PLOT_DIR="${PLOT_DIR:-plots}"
@@ -15,7 +15,7 @@ EXT="${EXT:-pdf}"
 
 # 1: binary file
 function compute() {
-	python3 compute.py "$1" -r $REP -d $DY -o "$FOLDER" $VALORS_N
+	python3 compute.py "$1" "$2" -r $REP -d $DY -o "$FOLDER" $VALORS_N
 }
 
 # 1: datafile, 2: title, 3: outputfile
@@ -55,12 +55,28 @@ mkdir -p "$PLOT_DIR"
 
 VALORS_N="$*"
 
+compute GRG numCompCon	 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r pipe "Components conexes en Geometric Random Graph"
+compute GRG midaCompConMax 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r pipe "Mida component conexa gegant en Geometric Random Graph"
+compute GRG cicle 			| YLABEL="Probabilitat de tenir cicle"		    XLABEL=r pipe "Cicles en Geometric Random Graph"
+compute GRG eulerianPath 	| YLABEL="Probabilitat de tenir camí eulerià"	XLABEL=r pipe "Camí eulerià en Geometric Random Graph"
+compute GRG eulerianCycle 	| YLABEL="Probabilitat de tenir cicle eulerià"	XLABEL=r pipe "Cicle eulerià en Geometric Random Graph"
 
-compute ./bin/geo_Ncomp | XLABEL=r pipe "Geometric Random Graph"
-compute ./bin/bin_Ncomp | XLABEL=p pipe "Binomial Random Graph"
+compute BRG numCompCon	 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p pipe "Components conexes en Binomial Random Graph"
+compute BRG midaCompConMax 	| YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p pipe "Mida Component conexa gegant en Binomial Random Graph"
+compute BRG cicle 			| YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p pipe "Cicles en Binomial Random Graph"
+compute BRG eulerianPath 	| YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p pipe "Camí eulerià en Binomial Random Graph"
+compute BRG eulerianCycle 	| YLABEL="Probabilitat de tenir cicle eulerià" 	XLABEL=p pipe "Cicle eulerià en Binomial Random Graph"
 
+OUTPUT="${PLOT_DIR}/GRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Components conexes en Geometric Random Graph" plot_mult_mult "${FOLDER}/GRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/GRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Mida component conexa gegant en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_midaCompConMax*.dat"
+OUTPUT="${PLOT_DIR}/GRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		    XLABEL=r TITLE="Cicles en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_cicle*.dat"
+OUTPUT="${PLOT_DIR}/GRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià"		XLABEL=r TITLE="Camí eulerià en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_eulerianPath*.dat"
+OUTPUT="${PLOT_DIR}/GRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià"	XLABEL=r TITLE="Cicle eulerià en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_eulerianCycle*.dat"
 
-TITLE="Geometric Random Graph" OUTPUT="${PLOT_DIR}/geo_mult.$EXT" plot_mult "${FOLDER}/geo*.dat"
-TITLE="Binomial Random Graph" OUTPUT="${PLOT_DIR}/bin_mult.$EXT" plot_mult "${FOLDER}/bin*.dat"
+OUTPUT="${PLOT_DIR}/BRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Components conexes en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/BRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Mida Component conexa gegant en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_midaCompConMax*.dat"
+OUTPUT="${PLOT_DIR}/BRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p TITLE="Cicles en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_cicle*.dat"
+OUTPUT="${PLOT_DIR}/BRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p TITLE="Camí eulerià en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_eulerianPath*.dat"
+OUTPUT="${PLOT_DIR}/BRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià" 	XLABEL=p TITLE="Cicle eulerià en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_eulerianCycle*.dat"
 
 wait
