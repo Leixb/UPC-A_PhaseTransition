@@ -67,16 +67,26 @@ compute BRG cicle 			| YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p pipe "Ci
 compute BRG eulerianPath 	| YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p pipe "Camí eulerià en Binomial Random Graph"
 compute BRG eulerianCycle 	| YLABEL="Probabilitat de tenir cicle eulerià" 	XLABEL=p pipe "Cicle eulerià en Binomial Random Graph"
 
-OUTPUT="${PLOT_DIR}/GRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Components conexes en Geometric Random Graph" plot_mult_mult "${FOLDER}/GRG_numCompCon*.dat"
-OUTPUT="${PLOT_DIR}/GRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Mida component conexa gegant en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_midaCompConMax*.dat"
-OUTPUT="${PLOT_DIR}/GRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		    XLABEL=r TITLE="Cicles en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_cicle*.dat"
-OUTPUT="${PLOT_DIR}/GRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià"		XLABEL=r TITLE="Camí eulerià en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_eulerianPath*.dat"
-OUTPUT="${PLOT_DIR}/GRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià"	XLABEL=r TITLE="Cicle eulerià en Geometric Random Graph" plot_mult		 "${FOLDER}/GRG_eulerianCycle*.dat"
+OUTPUT="${PLOT_DIR}/GRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Components conexes en Geometric Random Graph" \
+	plot_mult "${FOLDER}/GRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/GRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=r TITLE="Mida component conexa gegant en Geometric Random Graph" \
+	plot_mult		 "${FOLDER}/GRG_midaCompConMax*.dat"
+OUTPUT="${PLOT_DIR}/GRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		    XLABEL=r TITLE="Cicles en Geometric Random Graph" \
+	plot_mult		 "${FOLDER}/GRG_cicle*.dat"
+OUTPUT="${PLOT_DIR}/GRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià"		XLABEL=r TITLE="Camí eulerià en Geometric Random Graph" \
+	plot_mult		 "${FOLDER}/GRG_eulerianPath*.dat"
+OUTPUT="${PLOT_DIR}/GRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià"	XLABEL=r TITLE="Cicle eulerià en Geometric Random Graph" \
+	plot_mult		 "${FOLDER}/GRG_eulerianCycle*.dat"
 
-OUTPUT="${PLOT_DIR}/BRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Components conexes en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_numCompCon*.dat"
-OUTPUT="${PLOT_DIR}/BRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Mida Component conexa gegant en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_midaCompConMax*.dat"
-OUTPUT="${PLOT_DIR}/BRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p TITLE="Cicles en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_cicle*.dat"
-OUTPUT="${PLOT_DIR}/BRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p TITLE="Camí eulerià en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_eulerianPath*.dat"
-OUTPUT="${PLOT_DIR}/BRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià" 	XLABEL=p TITLE="Cicle eulerià en Binomial Random Graph" plot_mult		 "${FOLDER}/BRG_eulerianCycle*.dat"
+OUTPUT="${PLOT_DIR}/BRG_numCompCon.$EXT" 		YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Components conexes en Binomial Random Graph" \
+	plot_mult		 "${FOLDER}/BRG_numCompCon*.dat"
+OUTPUT="${PLOT_DIR}/BRG_midaCompConMax.$EXT" 	YLABEL="Avg. Mida component connexa gegant" 	XLABEL=p TITLE="Mida Component conexa gegant en Binomial Random Graph" \
+	plot_mult		 "${FOLDER}/BRG_midaCompConMax*.dat"
+OUTPUT="${PLOT_DIR}/BRG_cicle.$EXT" 			YLABEL="Probabilitat de tenir cicle"		 	XLABEL=p TITLE="Cicles en Binomial Random Graph" \
+	plot_mult		 "${FOLDER}/BRG_cicle*.dat"
+OUTPUT="${PLOT_DIR}/BRG_eulerianPath.$EXT" 		YLABEL="Probabilitat de tenir camí eulerià" 	XLABEL=p TITLE="Camí eulerià en Binomial Random Graph" \
+	plot_mult		 "${FOLDER}/BRG_eulerianPath*.dat"
+OUTPUT="${PLOT_DIR}/BRG_eulerianCycle.$EXT" 	YLABEL="Probabilitat de tenir cicle eulerià" 	XLABEL=p TITLE="Cicle eulerià en Binomial Random Graph" \
+	plot_mult		 "${FOLDER}/BRG_eulerianCycle*.dat"
 
 wait
