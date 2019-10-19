@@ -24,7 +24,6 @@ const std::list<size_t>& Graph::neighbors(const size_t& v) const {
     return AdjList[v];
 }
 
-/*
 const bool Graph::hasCycles() const {
     std::vector<bool> visited(AdjList.size(), false);
 
@@ -49,47 +48,10 @@ const bool Graph::hasCycles() const {
 		if (!visited[u]) Q.push(u);
 	}
 
-
-	for (;next < AdjList.size() && visited[next]; ++next)
-	    return true;
+	for (;next < AdjList.size() && visited[next]; ++next);
     }
 
     return false;
-}
-*/
-
-const bool Graph::hasCycles() const {
-    unsigned int n = AdjList.size();
-    std::vector<unsigned int> indeg (n, 0);
-
-    for (unsigned int u = 0; u < n; ++u) {
-	for (unsigned int v : AdjList[u]) {
-	    ++indeg[v];
-	}
-    }
-
-    std::vector<unsigned int> cands;
-
-    for (unsigned int u = 0; u < n; ++u) {
-	if (indeg[u] == 0) {
-	    cands.push_back(u);
-	}
-    }
-
-    while (not cands.empty()) {
-	int u = cands.back();
-	cands.pop_back();
-	--n;
-
-	for (int v : AdjList[u]) {
-	    --indeg[v];
-	    if (indeg[v] == 0) {
-		cands.push_back(v);
-	    }
-	}
-    }
-
-    return n > 0;
 }
 
 // 0 si nada, 1 si arbol, 2 si forest
