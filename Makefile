@@ -5,7 +5,7 @@ BIN = bin
 OBJ = obj
 SRC = src
 
-EXECUTABLES = bin_Ncomp geo_Ncomp
+EXECUTABLES = bin_Ncomp geo_Ncomp main
 
 HEADERS = $(wildcard $(SRC)/*.h)
 DEPENDENCIES = $(HEADERS:$(SRC)/%.h=$(OBJ)/%.o)
