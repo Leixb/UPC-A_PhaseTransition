@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 
 import argparse
+import re
 
 import numpy as np
 import matplotlib.pyplot as plt
 
 def get_data(file):
     data = np.genfromtxt(file.name)
-    return data.T
+    n = int(re.sub("\D", "", file.name))
+    (x, y) = data.T
+    return (x, y, n)
 
 
 def main():
@@ -36,11 +39,11 @@ def main():
 
     data = map(get_data, args.datafile)
 
-    for (x, y) in data:
+    for (x, y, n) in data:
         if args.scatter:
-            plt.scatter(x, y, label=int(y[0]))
+            plt.scatter(x, y, label=n)
         else:
-            plt.plot(x, y, label=int(y[0]))
+            plt.plot(x, y, label=n)
 
     if args.show_legend:
         plt.legend(title='N')
