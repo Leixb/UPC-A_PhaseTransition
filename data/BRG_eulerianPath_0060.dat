@@ -1,6 +1,6 @@
 # N=60 REP=500 dy=0.01
 # BRG
-# 0 p
+# eulerianPath p
 0 0
 0.1 0
 0.2 0
