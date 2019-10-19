@@ -29,7 +29,7 @@ function plot_mult() {
 	OUTPUT="${PLOT_DIR}/${NAME}.$EXT"
 	echo "Ploting : $OUTPUT ($TITLE)"
 	python3 plot.py -t "$TITLE" -x "$XLABEL" -y "$YLABEL" --xmin $XMIN --xmax $XMAX \
-		-o "$OUTPUT" --show-legend "${FOLDER}/${NAME}.dat" 2>/dev/null
+		-o "$OUTPUT" --show-legend "${FOLDER}/${NAME}"*.dat 2>/dev/null
 }
 
 function plot_mult_bingeo() {
