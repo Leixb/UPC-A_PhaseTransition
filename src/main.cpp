@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
 	cout << "# N=" << n << " REP=" << rep << " dy=" << dy << endl
 		 << "# " << tipus_graph << endl
-		 << "# " << propietat << ' ' << "p" << endl;
+		 << "# " << propietat_graph << ' ' << "p" << endl;
 
 	if (tipus_graph == "BRG") GeneradorGraph = BRG;
 	else if (tipus_graph == "GRG") GeneradorGraph = GRG;
