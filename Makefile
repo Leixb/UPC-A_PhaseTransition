@@ -17,7 +17,7 @@ build: $(EXECUTABLE_FILES)
 clean:
 	-rm -r -f $(BIN) $(OBJ)
 
-.PHONY: build clean
+.PHONY: build clean plots
 
 $(BIN):
 	mkdir -p $(BIN)
@@ -31,3 +31,6 @@ $(EXECUTABLE_FILES): $(BIN)/%: $(OBJ)/%.o $(DEPENDENCIES) | $(BIN)
 
 $(OBJ)/%.o: $(SRC)/%.cpp | $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+plots: bin/main
+	bash makePlots.sh 10 25 50 60 80 100 150
