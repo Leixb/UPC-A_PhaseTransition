@@ -65,6 +65,8 @@ const unsigned int Graph::TreeAndForest() const {
     return 0;
 }
 
+enum { NOTHING, PATH, CYCLE };
+
 // 0 si nada, 1 si Path, 2 si Cycle y Path
 const unsigned int Graph::EulerianCycleAndEulerianPath() const {
     unsigned int nVertex = AdjList.size();
@@ -85,13 +87,13 @@ const unsigned int Graph::EulerianCycleAndEulerianPath() const {
 	}
 
 	if (oddVertex == 0) {
-	    return 2;
+	    return CYCLE;
 	}
 	if (oddVertex == 2) {
-	    return 1;
+	    return PATH;
 	}
     }
-    return 0;
+    return NOTHING;
 }
 
 const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const {
