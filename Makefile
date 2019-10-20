@@ -5,7 +5,7 @@ BIN = bin
 OBJ = obj
 SRC = src
 
-EXECUTABLES = bin_Ncomp geo_Ncomp main
+EXECUTABLES = main
 
 HEADERS = $(wildcard $(SRC)/*.h)
 DEPENDENCIES = $(HEADERS:$(SRC)/%.h=$(OBJ)/%.o)
@@ -28,6 +28,7 @@ $(OBJ):
 $(EXECUTABLE_FILES): $(BIN)/%: $(OBJ)/%.o $(DEPENDENCIES) | $(BIN)
 	$(CC) $(CFLAGS) -o $@ $^
 	@echo "Build successful!"
+	@echo "Run: \"make plots\" to generate the plots"
 
 $(OBJ)/%.o: $(SRC)/%.cpp | $(OBJ)
 	$(CC) $(CFLAGS) -o $@ -c $<

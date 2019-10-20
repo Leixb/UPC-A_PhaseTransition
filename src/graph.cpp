@@ -40,6 +40,7 @@ const bool Graph::hasCycles() const {
 	    size_t v = Q.front();
 	    Q.pop();
 
+	    // Si estem tornant a visitar un vertex -> hi ha cicle
 	    if (visited[v]) return true;
 
 	    visited[v] = true;
@@ -48,21 +49,11 @@ const bool Graph::hasCycles() const {
 		if (!visited[u]) Q.push(u);
 	}
 
+	// Busquem seguent vertex no visitat (nova component)
 	for (;next < AdjList.size() && visited[next]; ++next);
     }
 
     return false;
-}
-
-// 0 si nada, 1 si arbol, 2 si forest
-const unsigned int Graph::TreeAndForest() const {
-    if (not hasCycles()) {
-	if (is_connected()) {
-	    return 1;
-	}
-	return 2;
-    }
-    return 0;
 }
 
 enum { NOTHING, PATH, CYCLE };
@@ -71,7 +62,7 @@ enum { NOTHING, PATH, CYCLE };
 const unsigned int Graph::EulerianCycleAndEulerianPath() const {
     unsigned int nVertex = AdjList.size();
 
-    std::pair<unsigned int, unsigned int> info = NconnectedComponents();
+    std::pair<unsigned int, unsigned int> info = ConnectedComponents();
     unsigned int nCC = info.first;
     unsigned int max = info.second;
 
@@ -80,23 +71,19 @@ const unsigned int Graph::EulerianCycleAndEulerianPath() const {
 
     if (singleCC) {
 	int oddVertex = 0;
-	for (unsigned int i = 0; i < nVertex; ++i) {
-	    if (AdjList[i].size() % 2 != 0) {
+	for (unsigned int i = 0; i < nVertex; ++i)
+	    if (AdjList[i].size() % 2 != 0)
 		++oddVertex;
-	    }
-	}
 
-	if (oddVertex == 0) {
-	    return CYCLE;
-	}
-	if (oddVertex == 2) {
-	    return PATH;
-	}
+	if (oddVertex == 0) return CYCLE;
+	if (oddVertex == 2) return PATH;
     }
+
     return NOTHING;
 }
 
-const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const {
+// retorna nombre de components connexes i mida de la component connexa gegant.
+const std::pair <unsigned int, unsigned int> Graph::ConnectedComponents() const {
     std::vector<bool> visited(AdjList.size(), false);
 
     unsigned int count = 0;
@@ -129,13 +116,15 @@ const std::pair <unsigned int, unsigned int> Graph::NconnectedComponents() const
 
 	if (size > max) max = size;
 
+	// Busquem seguent vertex no visitat (nova component)
 	for (;next < AdjList.size() && visited[next]; ++next);
     }
 
-    return std::make_pair(count,max);
+    return std::make_pair(count, max);
 }
 
-bool Graph::is_connected() const {
+// Retorna true si el graph es connex
+bool Graph::isConnected() const {
     std::vector<bool> visited(AdjList.size(), false);
     size_t count = 0;
 
@@ -159,7 +148,7 @@ bool Graph::is_connected() const {
 }
 
 void Graph::print() const {
-    // Prints adjacency list as a python dict (ca n be parsed with sagemath)
+    // Prints adjacency list as a python dict
 
     std::cout << '{' << std::endl;
     for (size_t i = 0; i < AdjList.size(); ++i) {

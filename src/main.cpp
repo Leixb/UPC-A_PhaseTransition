@@ -24,15 +24,15 @@ double average(const int& n, const double &p, const int &rep) {
 }
 
 int numCompCon(const int& n, const double &p) {
-	return GeneradorGraph(n, p).NconnectedComponents().first;
+	return GeneradorGraph(n, p).ConnectedComponents().first;
 }
 
 int esConnex(const int& n, const double &p) {
-	return GeneradorGraph(n, p).NconnectedComponents().first == 1;
+	return GeneradorGraph(n, p).isConnected();
 }
 
 int midaCompConMax(const int& n, const double &p) {
-	return GeneradorGraph(n, p).NconnectedComponents().second;
+	return GeneradorGraph(n, p).ConnectedComponents().second;
 }
 
 int cicle(const int& n, const double &p) {

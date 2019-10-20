@@ -14,9 +14,9 @@ template<typename T>
 T abs(const T &a) {return (a<0)? -a : a;}
 
 void calculate(list<pair<double, double>> &l, vector<list<pair<double,double> >::iterator> &v,
-			   const int &n, const double &dy, const int&rep,
-			   double (*func)(const int &n, const double &p, const int &rep),
-			   const int &depth=0) {
+		const int &n, const double &dy, const int&rep,
+		double (*func)(const int &n, const double &p, const int &rep),
+		const int &depth=0) {
 	if (depth > DEPTH_LIMIT) return; // no s hauria d arribar a complir mai si no afegim a next_it a la ultima iteracio
 
 	vector <list<pair<double, double> >::iterator> next_it;
@@ -41,7 +41,7 @@ void calculate(list<pair<double, double>> &l, vector<list<pair<double,double> >:
 }
 
 list<pair<double, double>> adaptative_calc(const int &n, const int &rep, const double &dy,
-			   							   double (*func)(const int &n, const double &p, const int &rep)) {
+		double (*func)(const int &n, const double &p, const int &rep)) {
 
 	list<pair<double, double> > l;
 	l.emplace_back(0, func(n, 0, rep));

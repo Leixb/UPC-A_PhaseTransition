@@ -5,6 +5,6 @@
 #include <list>
 
 std::list<std::pair<double, double>> adaptative_calc(const int &n, const int &rep, const double &dy,
-			   							   double (*func)(const int &n, const double &p, const int &rep));
+		double (*func)(const int &n, const double &p, const int &rep));
 
 #endif

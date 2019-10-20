@@ -6,28 +6,23 @@
 #include <utility>
 
 class Graph {
-	std::vector<std::list<std::size_t> > AdjList;
+    std::vector<std::list<std::size_t> > AdjList;
 
-	public:
+    public:
 
-	Graph(const std::size_t &n);
+    Graph(const std::size_t &n);
 
-	void addUndirectedEdge(const std::size_t& a, const std::size_t& b);
-	void addDirectedEdge(const std::size_t& a, const std::size_t& b);
-    
+    void addUndirectedEdge(const std::size_t& a, const std::size_t& b);
+    void addDirectedEdge(const std::size_t& a, const std::size_t& b);
+
     const bool hasCycles() const;
-    
-    const unsigned int TreeAndForest() const;
-    
     const unsigned int EulerianCycleAndEulerianPath() const;
-    
-	const std::pair <unsigned int, unsigned int> NconnectedComponents() const;
-    
-	bool is_connected() const;
+    const std::pair <unsigned int, unsigned int> ConnectedComponents() const;
+    bool isConnected() const;
 
-	void print() const;
+    void print() const;
 
-	const std::list<std::size_t>& neighbors(const std::size_t& v) const;
+    const std::list<std::size_t>& neighbors(const std::size_t& v) const;
 };
 
 #endif /* ifndef GRAPH_H */
