@@ -1,4 +1,4 @@
-# Transició de fase i components connexes en grafs aleatoris
+# Transició de fase i components connexes en grafs aleatoris [![Build Status](https://travis-ci.com/Leixb/GRAU-A_PhaseTransition.svg?token=qEz3Uk5fvSr9HeEEwxjb&branch=master)](https://travis-ci.com/Leixb/GRAU-A_PhaseTransition)
 
 ## Build
 Per generar les binàries cal fer `make` i es generen a la carpeta `bin/`.
@@ -27,7 +27,7 @@ $ ./bin/geo_Ncomp 100 500 0.1
 
 ## Càlcul
 
-Per calcular les dades tenim un script en Python `compute.py`. Executa `geo_Ncomp` o `bin_Ncomp` per diferents valors de N passats com a arguments. 
+Per calcular les dades tenim un script en Python `compute.py`. Executa `geo_Ncomp` o `bin_Ncomp` per diferents valors de N passats com a arguments.
 
 ### Exemple
 
@@ -45,7 +45,7 @@ Per generar els gràfics utilitzem un script de Python `plot.py` i els parametre
 ### Exemple
 
 ~~~~bash
-# plot de BRG per totes les dades a la carpeta data 
+# plot de BRG per totes les dades a la carpeta data
 python3 plot.py -t "Binomial Random Graph \$p \leq 0.4\$" -x p -y "Nombre components connexos" --xmax 0.4 --show-legend -o plots/bin_mult_0.4.pdf data/bin*.dat
 
 # plot de GRG per N=25
