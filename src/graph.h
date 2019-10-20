@@ -5,6 +5,8 @@
 #include <list>
 #include <utility>
 
+enum { NOTHING, EULERIAN_PATH, EULERIAN_CYCLE };
+
 class Graph {
     std::vector<std::list<std::size_t> > AdjList;
 

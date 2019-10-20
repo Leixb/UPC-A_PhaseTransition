@@ -56,8 +56,6 @@ const bool Graph::hasCycles() const {
     return false;
 }
 
-enum { NOTHING, PATH, CYCLE };
-
 // 0 si nada, 1 si Path, 2 si Cycle y Path
 const unsigned int Graph::EulerianCycleAndEulerianPath() const {
     unsigned int nVertex = AdjList.size();
@@ -75,8 +73,8 @@ const unsigned int Graph::EulerianCycleAndEulerianPath() const {
 	    if (AdjList[i].size() % 2 != 0)
 		++oddVertex;
 
-	if (oddVertex == 0) return CYCLE;
-	if (oddVertex == 2) return PATH;
+	if (oddVertex == 0) return EULERIAN_CYCLE;
+	if (oddVertex == 2) return EULERIAN_PATH;
     }
 
     return NOTHING;

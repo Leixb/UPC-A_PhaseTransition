@@ -40,11 +40,11 @@ int cicle(const int& n, const double &p) {
 }
 
 int eulerianCycle(const int& n, const double &p) {
-	return GeneradorGraph(n, p).EulerianCycleAndEulerianPath() == 2;
+	return GeneradorGraph(n, p).EulerianCycleAndEulerianPath() == EULERIAN_PATH;
 }
 
 int eulerianPath(const int& n, const double &p) {
-	return GeneradorGraph(n, p).EulerianCycleAndEulerianPath() == 1;
+	return GeneradorGraph(n, p).EulerianCycleAndEulerianPath() == EULERIAN_CYCLE;
 }
 
 int main(int argc, char *argv[]) {
