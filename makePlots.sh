@@ -63,46 +63,46 @@ mkdir -p "$PLOT_DIR"
 
 VALORS_N="$*"
 
+TITLEcicle="Cicles"
+TITLEesConnex="Connectivitat"
 TITLEeulerianCycle="Cicle eulerià"
 TITLEeulerianPath="Camí eulerià"
-TITLEcicle="Cicles"
 TITLEmidaCompConMax="Mida de la component conexa gegant"
-TITLEesConnex="Connectivitat"
 TITLEnumCompCon="Components conexes"
 
-TITLE_GRG=" en Geometric Random Graph"
 TITLE_BRG=" en Binomial Random Graph"
+TITLE_GRG=" en Geometric Random Graph"
 
+LABELcicle="Probabilitat de contenir un cicle"
+LABELesConnex="Probabilitat de ser connex"
 LABELeulerianCycle="Probabilitat de contenir un cicle eulerià"
 LABELeulerianPath="Probabilitat de contenir un camí eulerià"
-LABELcicle="Probabilitat de contenir un cicle"
 LABELmidaCompConMax="Mida esperada de la component connexa gegant"
-LABELesConnex="Probabilitat de ser connex"
 LABELnumCompCon="Nombre de components connexos esperats"
 
 if [ $# -ne 0 ]; then
 	XLABEL=r
-	DY=0.10 compute GRG numCompCon	 		| YLABEL="$LABELnumCompCon" 		pipe "${TITLEnumCompCon}${TITLE_GRG}"
-	DY=0.01 compute GRG esConnex 			| YLABEL="$LABELesConnex"			pipe "${TITLEesConnex}${TITLE_GRG}"
-	DY=0.10 compute GRG midaCompConMax 		| YLABEL="$LABELmidaCompConMax"		pipe "${TITLEmidaCompConMax}${TITLE_GRG}"
 	DY=0.01 compute GRG cicle 				| YLABEL="$LABELcicle"				pipe "${TITLEcicle}${TITLE_GRG}"
-	DY=0.01 compute GRG eulerianPath 		| YLABEL="$LABELeulerianPath"		pipe "${TITLEeulerianPath}${TITLE_GRG}"
+	DY=0.01 compute GRG esConnex 			| YLABEL="$LABELesConnex"			pipe "${TITLEesConnex}${TITLE_GRG}"
 	DY=0.01 compute GRG eulerianCycle 		| YLABEL="$LABELeulerianCycle"		pipe "${TITLEeulerianCycle}${TITLE_GRG}"
+	DY=0.01 compute GRG eulerianPath 		| YLABEL="$LABELeulerianPath"		pipe "${TITLEeulerianPath}${TITLE_GRG}"
+	DY=0.10 compute GRG midaCompConMax 		| YLABEL="$LABELmidaCompConMax"		pipe "${TITLEmidaCompConMax}${TITLE_GRG}"
+	DY=0.10 compute GRG numCompCon	 		| YLABEL="$LABELnumCompCon" 		pipe "${TITLEnumCompCon}${TITLE_GRG}"
 
 	XLABEL=p
-	DY=0.10 compute BRG numCompCon	 	 	| YLABEL="$LABELnumCompCon"			pipe "${TITLEnumCompCon}${TITLE_BRG}"
-	DY=0.01 compute BRG esConnex	 	 	| YLABEL="$LABELesConnex"			pipe "${TITLEesConnex}${TITLE_BRG}"
-	DY=0.10 compute BRG midaCompConMax 	 	| YLABEL="$LABELmidaCompConMax"		pipe "${TITLEmidaCompConMax}${TITLE_BRG}"
 	DY=0.01 compute BRG cicle 			 	| YLABEL="$LABELcicl"				pipe "${TITLEcicle}${TITLE_BRG}"
-	DY=0.01 compute BRG eulerianPath 	 	| YLABEL="$LABELeulerianPath"		pipe "${TITLEeulerianPath}${TITLE_BRG}"
+	DY=0.01 compute BRG esConnex	 	 	| YLABEL="$LABELesConnex"			pipe "${TITLEesConnex}${TITLE_BRG}"
 	DY=0.01 compute BRG eulerianCycle 	 	| YLABEL="$LABELeulerianCycle"		pipe "${TITLEeulerianCycle}${TITLE_BRG}"
+	DY=0.01 compute BRG eulerianPath 	 	| YLABEL="$LABELeulerianPath"		pipe "${TITLEeulerianPath}${TITLE_BRG}"
+	DY=0.10 compute BRG midaCompConMax 	 	| YLABEL="$LABELmidaCompConMax"		pipe "${TITLEmidaCompConMax}${TITLE_BRG}"
+	DY=0.10 compute BRG numCompCon	 	 	| YLABEL="$LABELnumCompCon"			pipe "${TITLEnumCompCon}${TITLE_BRG}"
 fi
 
-YLABEL="$LABELnumCompCon" 		TITLE="$TITLEnumCompCon" 		plot_mult_bingeo numCompCon
-YLABEL="$LABELesConnex"			TITLE="$TITLEesConnex" 			plot_mult_bingeo esConnex
-YLABEL="$LABELmidaCompConMax" 	TITLE="$TITLEmidaCompConMax" 	plot_mult_bingeo midaCompConMax
 YLABEL="$LABELcicle"		    TITLE="$TITLEcicle" 			plot_mult_bingeo cicle
-YLABEL="$LABELeulerianPath"		TITLE="$TITLEeulerianPath" 		plot_mult_bingeo eulerianPath
+YLABEL="$LABELesConnex"			TITLE="$TITLEesConnex" 			plot_mult_bingeo esConnex
 YLABEL="$LABELeulerianCycle"	TITLE="$TITLEeulerianCycle" 	plot_mult_bingeo eulerianCycle
+YLABEL="$LABELeulerianPath"		TITLE="$TITLEeulerianPath" 		plot_mult_bingeo eulerianPath
+YLABEL="$LABELmidaCompConMax" 	TITLE="$TITLEmidaCompConMax" 	plot_mult_bingeo midaCompConMax
+YLABEL="$LABELnumCompCon" 		TITLE="$TITLEnumCompCon" 		plot_mult_bingeo numCompCon
 
 wait
