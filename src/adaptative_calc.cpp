@@ -54,7 +54,7 @@ list<pair<double, double>> adaptative_calc(const int &n, const int &rep, const d
 	vector<list<pair<double, double> >::iterator> v(PART_INI);
 
 	// Divideix el rang d entrada en PART_INI particions
-	for (size_t i = 1; i <= PART_INI; ++i)
+	for (std::size_t i = 1; i <= PART_INI; ++i)
 		v[i-1] = l.emplace(l.end(), double(i)/double(PART_INI), -1);
 
 
